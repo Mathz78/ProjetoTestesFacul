@@ -10,31 +10,39 @@ namespace TesteUnitario.Tests
     {
         VerificaRenda calculoRenda = new VerificaRenda();
 
-        [Fact]
-        public void PrimeiroCaso()
+        [Theory]
+        [InlineData(4800)]
+        [InlineData(4799)]
+        public void PrimeiroCaso(double value)
         {
-            var resultado = calculoRenda.VerificarRenda(4800);
+            var resultado = calculoRenda.VerificarRenda(value);
             resultado.ShouldBe("Classe B");
         }
 
-        [Fact]
-        public void SegundoCaso()
+        [Theory]
+        [InlineData(10000)]
+        [InlineData(4800.01)]
+        public void SegundoCaso(double value)
         {
-            var resultado = calculoRenda.VerificarRenda(4800.01);
+            var resultado = calculoRenda.VerificarRenda(value);
             resultado.ShouldBe("Classe A");
         }
 
-        [Fact]
-        public void TerceiroCaso()
+        [Theory]
+        [InlineData(-10)]
+        [InlineData(-0.1)]
+        public void TerceiroCaso(double value)
         {
-            var resultado = calculoRenda.VerificarRenda(-1);
+            var resultado = calculoRenda.VerificarRenda(value);
             resultado.ShouldBe("Inválido");
         }
 
-        [Fact]
-        public void QuartoCaso()
+        [Theory]
+        [InlineData(0)]
+        [InlineData(1000)]
+        public void QuartoCaso(double value)
         {
-            var resultado = calculoRenda.VerificarRenda(0);
+            var resultado = calculoRenda.VerificarRenda(value);
             resultado.ShouldBe("Classe E");
         }
     }
